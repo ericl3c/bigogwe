@@ -133,7 +133,7 @@ export default function AdminDashboard() {
       return;
     }
     loadData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const showMessage = (type, text) => {
     setMessageType(type);

@@ -2,7 +2,6 @@ import Navbar from "../component/Navbar";
 import "../App.css";
 import "../css/about.css";
 import heroImage from "../image/background.jpeg";
-import developerImage from "../image/image1.jpeg";
 import teamImage from "../image/ceo.jpeg";
 import tourGuideImage from "../image/Tour_Guide.jpeg";
 import culturalTrainerImage from "../image/caltural_trean.jpeg";

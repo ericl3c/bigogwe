@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Navbar from "../component/Navbar";
 import "../css/style.css"
 import waitImage from "../image/image2.jpeg";
-import image1 from "../image/image1.jpeg";
 import logo from "../image/logo.jpeg";
 
 function Home() {
@@ -90,7 +89,7 @@ function Home() {
 
           <img
             src={waitImage}
-            alt="wait image"
+            alt="Visitors waiting at eco-tourism site"
           />
 
         </div>
