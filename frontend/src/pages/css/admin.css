@@ -1,0 +1,3 @@
+/* Compatibility re-export for incorrect relative import from src/pages/admin */
+@import "../../css/admin.css";
+

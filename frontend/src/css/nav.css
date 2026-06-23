@@ -1,0 +1,288 @@
+/* ========================= */
+/* BIGOGWE NAVBAR CSS       */
+/* ========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+  --primary:#164a2a;
+  --secondary:#27ad63;
+  --white:#fcfcfb;
+  --dark:#0b2615;
+  --glass:rgba(255,255,255,0.16);
+  --shadow:0 14px 40px rgba(0,0,0,0.13);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{scroll-behavior:smooth;}
+
+body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:84px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 5.5%;
+  z-index:1000;
+  background:rgba(11,58,29,0.78);
+  backdrop-filter:blur(18px);
+  box-shadow:var(--shadow);
+  transition:background .3s ease, transform .3s ease;
+}
+
+.navbar.scrolled{
+  background:rgba(6,34,18,0.92);
+}
+
+.navbar ul li a{
+  position:relative;
+  text-decoration:none;
+  color:var(--white);
+  font-size:16px;
+  font-weight:500;
+  padding:12px 18px;
+  border-radius:14px;
+  transition:0.35s ease;
+  display:inline-block;
+}
+
+/* ================= LOGO ================= */
+
+.logo{
+  color:var(--white);
+  font-size:20px;
+  font-weight:800;
+  letter-spacing:1px;
+  cursor:pointer;
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:60%;
+  height:4px;
+  border-radius:10px;
+  background:var(--secondary);
+}
+
+.nav-logo{
+  width:56px;
+  height:56px;
+  object-fit:cover;
+  border-radius:10px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* ================= NAV LINKS ================= */
+
+.navbar ul{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  list-style:none;
+}
+
+.navbar ul li{
+  position:relative;
+}
+
+.navbar ul li a{
+  position:relative;
+  text-decoration:none;
+  color:var(--white);
+  font-size:16px;
+  font-weight:500;
+  padding:12px 18px;
+  border-radius:14px;
+  transition:0.4s ease;
+  overflow:hidden;
+  display:inline-block;
+}
+
+/* HOVER EFFECT */
+
+.navbar ul li a::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,0.12);
+  border-radius:14px;
+  transform:scale(0);
+  transition:0.4s ease;
+  z-index:-1;
+}
+
+.navbar ul li a:hover::before{
+  transform:scale(1);
+}
+
+.navbar ul li a:hover{
+  color:#dcfce7;
+  transform:translateY(-2px);
+}
+
+/* ACTIVE STYLE */
+
+.navbar ul li a.active{
+  background:linear-gradient(
+    135deg,
+    #22c55e,
+    #16a34a
+  );
+  color:white;
+  box-shadow:0 8px 20px rgba(34,197,94,0.3);
+}
+
+/* ================= BOOKING BUTTON ================= */
+
+.navbar ul li:last-child a{
+  background:linear-gradient(
+    135deg,
+    #22c55e,
+    #16a34a
+  );
+  color:white;
+  font-weight:600;
+  padding:12px 22px;
+  box-shadow:0 8px 20px rgba(34,197,94,0.25);
+}
+
+.navbar ul li:last-child a:hover{
+  transform:translateY(-3px);
+  box-shadow:0 15px 30px rgba(34,197,94,0.35);
+}
+
+/* ================= MOBILE MENU ================= */
+
+.nav-toggle{
+  display:none;
+  background:none;
+  border:none;
+  cursor:pointer;
+  z-index:1001;
+}
+
+.hamburger{
+  position:relative;
+  width:30px;
+  height:3px;
+  background:white;
+  display:block;
+  border-radius:10px;
+  transition:0.3s;
+}
+
+.hamburger::before,
+.hamburger::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:30px;
+  height:3px;
+  background:white;
+  border-radius:10px;
+  transition:0.3s;
+}
+
+.hamburger::before{
+  top:-9px;
+}
+
+.hamburger::after{
+  top:9px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+  .nav-toggle{
+    display:block;
+  }
+
+  .navbar{
+    padding:0 6%;
+  }
+
+  .navbar ul{
+    position:fixed;
+    top:85px;
+    right:-100%;
+    width:280px;
+    height:calc(100vh - 85px);
+
+    background:rgba(22,101,52,0.96);
+    backdrop-filter:blur(15px);
+
+    flex-direction:column;
+    align-items:flex-start;
+    padding:40px 25px;
+    gap:20px;
+
+    transition:0.4s ease;
+    box-shadow:-10px 0 30px rgba(0,0,0,0.15);
+  }
+
+  .navbar ul[data-open="true"]{
+    right:0;
+  }
+
+  .navbar ul li{
+    width:100%;
+  }
+
+  .navbar ul li a{
+    width:100%;
+    display:block;
+    font-size:17px;
+    padding:14px 18px;
+  }
+
+  .logo{
+    font-size:25px;
+  }
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media(max-width:500px){
+
+  .navbar{
+    height:75px;
+    padding:0 5%;
+  }
+
+  .navbar ul{
+    top:75px;
+    width:100%;
+    border-radius:0;
+  }
+
+  .logo{
+    font-size:21px;
+  }
+
+  .hamburger,
+  .hamburger::before,
+  .hamburger::after{
+    width:26px;
+  }
+}
