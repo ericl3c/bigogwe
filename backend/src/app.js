@@ -1,10 +1,13 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const app = express();
 const { sequelize } = require("./models");
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || true,
+}));
 app.use(express.json());
 
 // Serve uploaded files as static files

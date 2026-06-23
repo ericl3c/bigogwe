@@ -1,11 +1,12 @@
 const { Sequelize, DataTypes } = require("sequelize");
 
 const sequelize = new Sequelize(
-  "bigogwe_db",     // database name
-  "root",             // mysql username
-  "",                 // mysql password
+  process.env.DB_NAME || "bigogwe_db",
+  process.env.DB_USER || "root",
+  process.env.DB_PASS || "",
   {
-    host: "localhost",
+    host: process.env.DB_HOST || "localhost",
+    port: process.env.DB_PORT || 3306,
     dialect: "mysql",
     logging: false,
     define: {
