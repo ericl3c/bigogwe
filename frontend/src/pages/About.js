@@ -2,7 +2,7 @@ import Navbar from "../component/Navbar";
 import "../App.css";
 import "../css/about.css";
 import heroImage from "../image/background.jpeg";
-import developerImage from "../image/image1.jpeg";
+import developerImage from "../image/shema.jpeg";
 import teamImage from "../image/ceo.jpeg";
 import tourGuideImage from "../image/Tour_Guide.jpeg";
 import culturalTrainerImage from "../image/caltural_trean.jpeg";
@@ -96,6 +96,32 @@ function About() {
       </section>
 
       {/* DEVELOPMENT */}
+      <section className="developer-section">
+
+        <h2>Developer</h2>
+
+        <div className="developer-card">
+          <img
+            src={developerImage}
+            alt="Shema Eric"
+          />
+
+          <div className="developer-details">
+            <h3>Shema Eric</h3>
+            <p>
+              Shema Eric is a Full-Stack Software Developer specializing in
+              backend development with PHP/Laravel and Node.js/Express. He
+              develops scalable web applications, REST APIs, and database-driven
+              systems using MySQL. He also builds modern frontend interfaces
+              with React.js, Vue.js, JavaScript, HTML, and CSS. His interests
+              extend to DevOps, Blockchain, IoT, Machine Learning, and UI/UX
+              design, making him a versatile developer with a passion for modern
+              software technologies.
+            </p>
+          </div>
+        </div>
+
+      </section>
      
       {/* TEAM */}
       <section className="team-section">
