@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Calendar,
@@ -44,6 +44,35 @@ export default function AdminDashboard() {
   const [bookingFilterCategory, setBookingFilterCategory] = useState("");
   const [paymentInputs, setPaymentInputs] = useState({});
   const [editingPaidId, setEditingPaidId] = useState(null);
+
+  const showMessage = useCallback((type, text) => {
+    setMessageType(type);
+    setMessage(text);
+    setTimeout(() => setMessage(""), 3500);
+  }, []);
+
+  const loadData = useCallback(async () => {
+    setLoading(true);
+    try {
+      const [bookingsData, galleryData, contactsData] = await Promise.all([
+        apiRequest("/bookings"),
+        apiRequest("/gallery"),
+        apiRequest("/contacts"),
+      ]);
+      setBookings(bookingsData);
+      setGallery(galleryData);
+      setContactMessages(contactsData);
+    } catch (err) {
+      if (err.message.includes("Authentication") || err.message.includes("token")) {
+        clearAuth();
+        navigate("/admin/login");
+        return;
+      }
+      showMessage("error", err.message);
+    } finally {
+      setLoading(false);
+    }
+  }, [navigate, showMessage]);
 
   const bookingStatusOptions = [
     { value: "pending", label: "Pending" },
@@ -133,36 +162,7 @@ export default function AdminDashboard() {
       return;
     }
     loadData();
-  }, []);
-
-  const showMessage = (type, text) => {
-    setMessageType(type);
-    setMessage(text);
-    setTimeout(() => setMessage(""), 3500);
-  };
-
-  const loadData = async () => {
-    setLoading(true);
-    try {
-      const [bookingsData, galleryData, contactsData] = await Promise.all([
-        apiRequest("/bookings"),
-        apiRequest("/gallery"),
-        apiRequest("/contacts"),
-      ]);
-      setBookings(bookingsData);
-      setGallery(galleryData);
-      setContactMessages(contactsData);
-    } catch (err) {
-      if (err.message.includes("Authentication") || err.message.includes("token")) {
-        clearAuth();
-        navigate("/admin/login");
-        return;
-      }
-      showMessage("error", err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [auth?.token, auth?.user?.role, loadData, navigate]);
 
   const handleLogout = () => {
     clearAuth();
